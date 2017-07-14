@@ -50,20 +50,25 @@ public class InfluencerFilter extends MessageFilter{
 				map.put("name", name);
 				map.put("screen_name", screenName);
 				if(userObject.get("location") != null){
-					map.put("location", userObject.get("location").getAsString());				
+					String loc = "";
+					try{
+						loc = userObject.get("location").getAsString();
+					}catch(Exception e){
+						loc = "";
+					}
+					map.put("location", loc);				
 				}
+
 				map.put("followers_count", Integer.toString(followerCount));
 				map.put("friendCount", Integer.toString(friendCount));
 				
 				Jedis jedis = super.getJedisInstance();
 				if(jedis != null){
 					// Update the Sorted Set
-					jedis.zadd("Influencers", followerCount, screenName);
+					jedis.zadd("influencers", followerCount, screenName);
 					
 					// Update the Hash 
-					jedis.hmset("Influencer:"+screenName, map);
-					
-					//System.out.println(userObject.get("screen_name").getAsString()+"| Followers:"+userObject.get("followers_count").getAsString());								
+					jedis.hmset("influencer:"+screenName, map);
 				}
 			}
 		}catch(Exception e){

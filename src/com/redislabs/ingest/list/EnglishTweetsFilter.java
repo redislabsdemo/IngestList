@@ -35,10 +35,10 @@ public class EnglishTweetsFilter extends MessageFilter{
 		JsonArray jsonArray = jsonElement.getAsJsonArray();
 		JsonObject jsonObject = jsonArray.get(1).getAsJsonObject();
 		if(jsonObject.get("lang") != null && jsonObject.get("lang").getAsString().equals("en")){
-			//System.out.println(jsonObject.get("text").getAsString());
+			
 			Jedis jedis = super.getJedisInstance();
 			if(jedis != null){
-				jedis.lpush(super.name, jsonObject.toString());				
+				jedis.lpush(super.outBoundListName, jsonObject.toString());				
 			}
 		}
 	}

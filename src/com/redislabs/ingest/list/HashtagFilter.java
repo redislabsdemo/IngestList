@@ -48,7 +48,7 @@ public class HashtagFilter extends MessageFilter{
 				Jedis jedis = super.getJedisInstance();
 				if(jedis != null){
 					// Update the Sorted Set
-					jedis.zincrby(name, 1, mat.group(1));
+					jedis.zincrby(super.outBoundListName, 1, mat.group(1));
 				}
 			}
 			

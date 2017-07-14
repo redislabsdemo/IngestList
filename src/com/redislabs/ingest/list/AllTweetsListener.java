@@ -23,7 +23,7 @@ public class AllTweetsListener extends MessageListener{
 	public static synchronized MessageListener getInstance() throws Exception
 	{
 		if(allTweetsListener == null){
-			allTweetsListener = new AllTweetsListener("AllTweetsListener", "AllData");
+			allTweetsListener = new AllTweetsListener("AllTweetsListener", "alldata");
 		}
 
 		return allTweetsListener;
@@ -50,8 +50,8 @@ public class AllTweetsListener extends MessageListener{
 	 */
 	public static void main(String[] args) throws Exception{
 		MessageListener allTweetsProcessor = AllTweetsListener.getInstance();
-		allTweetsProcessor.registerOutBoundMessageList(new EnglishTweetsFilter("EnglishTweetsFilter", "EnglishTweets"));
-		allTweetsProcessor.registerOutBoundMessageList(new InfluencerFilter("InfluencerFilter", "Influencers"));
+		allTweetsProcessor.registerOutBoundMessageList(new EnglishTweetsFilter("EnglishTweetsFilter", "englishtweets"));
+		allTweetsProcessor.registerOutBoundMessageList(new InfluencerFilter("InfluencerFilter", "influencers"));
 		allTweetsProcessor.start();
 	}
 }

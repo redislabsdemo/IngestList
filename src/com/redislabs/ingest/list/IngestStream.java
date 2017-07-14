@@ -51,7 +51,7 @@ public class IngestStream
 		pubnub.subscribe().channels(Arrays.asList(CHANNEL_TWITTER)).execute();
 		
 		// The list that queues up all the messages
-		allMsgs = new MessageList("AllData");		
+		allMsgs = new MessageList("alldata");		
 		
 		// PubNub callback that's passed to the listener
 		SubscribeCallback subscribeCallback = new SubscribeCallback() {
@@ -72,6 +72,7 @@ public class IngestStream
 		    public void message(PubNub pubnub, PNMessageResult message) {
 		    	try{
 		    		// Queue up all the messages in the list
+		    		System.out.println(message.getMessage().getAsJsonObject().toString());
 			    	allMsgs.push(message.getMessage().getAsJsonObject().toString());		    		
 		    	}catch(Exception e){
 		    		e.printStackTrace();

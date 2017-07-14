@@ -22,7 +22,7 @@ public class EnglishTweetListener extends MessageListener{
 	public static synchronized MessageListener getInstance() throws Exception
 	{
 		if(englishTweetListener == null){
-			englishTweetListener = new EnglishTweetListener("EnglishTweetListener", "EnglishTweets");
+			englishTweetListener = new EnglishTweetListener("EnglishTweetListener", "englishtweets");
 		}
 
 		return englishTweetListener;
@@ -48,7 +48,7 @@ public class EnglishTweetListener extends MessageListener{
 	 */
 	public static void main(String[] args) throws Exception{
 		MessageListener englishTweetListener = EnglishTweetListener.getInstance();
-		englishTweetListener.registerOutBoundMessageList(new HashtagFilter("HashtagFilter", "HashtagSet"));
+		englishTweetListener.registerOutBoundMessageList(new HashtagFilter("HashtagFilter", "hashtagset"));
 		englishTweetListener.start();
 	}
 }
